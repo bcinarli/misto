@@ -5,7 +5,7 @@ static webpages or single page apps.
 
 Why Misto is Different?
 --------------------------------------------------------------------------------
-It ready to use, no installation needed. Copy the files and add your pages. Misto
+It is ready to use, no installation needed. Copy the files and add your pages. Misto
 has its own router class to parse url and show the related page files.
 
 You can manage displays according to different user types for demo pages with the 
