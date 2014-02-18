@@ -134,7 +134,7 @@
                 $link = '#';
             } else
             {
-                $link = 'http://' . url::getHost() . $url;
+                $link = 'http://' . url::$plainhost . url::$path . $url;
 
                 if (substr($url, 0, 7) == 'http://')
                 {
