@@ -3,7 +3,6 @@
  * @author Bilal Cinarli
  * @link http://bcinarli.com
  **/
-/
 
 html::$id = 'homepage';
 html::$class = 'homepage';
