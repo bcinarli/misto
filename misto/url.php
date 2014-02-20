@@ -28,8 +28,8 @@
             self::$_host = $_SERVER['HTTP_HOST'];
 
             $this->findPath();
+			$this->findSubdomain();
             $this->plainHost();
-            $this->findSubdomain();
             $this->getUrl();
         }
 
@@ -42,6 +42,22 @@
             if ($script_path != self::$path)
             {
                 self::$path = $script_path;
+            }
+        }
+		
+        private function findSubdomain()
+        {
+            if (self::$_isLocal == false)
+            {
+                $host = explode('.', self::$_host);
+
+                if (count($host) == 2)
+                {
+                    self::$_subdomain = 'www';
+                } else
+                {
+                    self::$_subdomain = $host[0];
+                }
             }
         }
 
@@ -64,27 +80,15 @@
 	            self::$plainhost = str_replace(self::$_subdomain . '.', '', self::$_host);
             }
         }
+		
+		public static function getPath(){
+			return self::$path . '/';
+		}
 
 	    public static function getPlainHost()
 	    {
 		    return self::$plainhost;
 	    }
-
-        private function findSubdomain()
-        {
-            if (self::$_isLocal == false)
-            {
-                $host = explode('.', self::$_host);
-
-                if (count($host) == 2)
-                {
-                    self::$_subdomain = 'www';
-                } else
-                {
-                    self::$_subdomain = $host[0];
-                }
-            }
-        }
 
         public static function getUrl()
         {
@@ -149,10 +153,6 @@
 
 	    public static function app_url($dir = ''){
 		    return self::base_url('app/' . $dir);
-	    }
-
-	    public static function assets_url($dir = ''){
-		    return self::base_url('assets/' . $dir);
 	    }
 
         public static function homepage()

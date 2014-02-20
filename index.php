@@ -1,11 +1,28 @@
 <?php
-
     define('ABS_PATH', dirname(__file__) . '/');
-    include(ABS_PATH . 'app/settings/settings.php'); 
+    include(ABS_PATH . 'settings.php');
 
     function __autoload($class)
     {
-        require_once (ABS_PATH . 'misto/' . strtolower($class) . '.php');
+	    $classname = strtolower($class);
+	    $namespaced = ABS_PATH . str_replace('\\', '/', $class) . '.php';
+	    $customClass = ABS_PATH . APP_PATH . 'classes/' . $classname . '.php';
+	    $mistoClass = ABS_PATH . 'misto/' . $classname . '.php';
+
+	    // namespaced classes
+	    if(file_exists($namespaced)){
+		    require_once $namespaced;
+	    }
+
+	    // classic classes
+	    else if(file_exists($customClass)){
+		    require_once $customClass;
+	    }
+
+	    // misto classes
+	    else if(file_exists($mistoClass)){
+		    require_once $mistoClass;
+	    }
     }
 
     new misto;

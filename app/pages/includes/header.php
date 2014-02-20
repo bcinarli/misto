@@ -16,7 +16,7 @@
 </head>
 <body<?php echo html::$id != '' ? ' id="' . html::$id . '"' : ''; ?><?php echo html::$class != '' ? ' class="' . html::$class . '"' : ''; ?>>
 	<div id="wrapper" class="page-wrap">
-		<div class="document-main">
-			<header class="page-header">
-				<h1 class="page-heading"><?php echo html::$title; ?></h1>
-			</header>
+		<header class="page-header">
+			<h1 class="page-heading"><?php echo html::$title; ?></h1>
+		</header>
+		<div id="main" class="main-content">

@@ -4,7 +4,7 @@
  * @link http://bcinarli.com
  **/
 
-
+	define('APP_PATH', 'app/');
     define('SITE_TITLE', "Misto");
 
     define('Authentication', false);

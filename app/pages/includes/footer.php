@@ -4,7 +4,7 @@
  * @link http://bcinarli.com
  **/
 ?>		
-		</div><!-- #document main -->
+		</div><!-- #main -->
 		<?php include "navigation.php"; ?>
 	</div><!-- #wrapper -->
 </body>

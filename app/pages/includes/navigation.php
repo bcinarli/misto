@@ -10,6 +10,6 @@
 			</div>
 
 			<nav class="main-nav">
-				<?php echo navigation::getNav('main_nav', ''); ?>
+				<?php //echo navigation::getNav('main_nav', ''); ?>
 			</nav>
 		</aside>
