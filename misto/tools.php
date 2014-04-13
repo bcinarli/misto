@@ -75,6 +75,12 @@ class tools {
 		return $return;
 	}
 
+	public static function formatDate($date, $format = 'd M, Y'){
+		$d = new DateTime($date);
+
+		return date_format($d, $format);
+	}
+
 	public static function is_serial($data)
 	{
 		$serial = false;

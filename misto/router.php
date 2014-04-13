@@ -6,8 +6,8 @@
 
     class router
     {
-        private $_routes;
-        private $_routeMatch = false;
+        private static $_routes;
+        private static $_routeMatch = false;
         private static $_page;
 	    private static $_matches;
         private static $_role = '404';
@@ -25,14 +25,14 @@
         {
             if (is_array($routes))
             {
-                $this->_routes = $routes;
+                self::$_routes = $routes;
                 $this->analyseRoutes();
             }
         }
 
         public function analyseRoutes()
         {
-            foreach ($this->_routes as $route)
+            foreach (self::$_routes as $route)
             {
                 $match = 'plain';
                 if (isset($route['match']))
@@ -51,7 +51,7 @@
                         break;
                 }
 
-                if ($this->_routeMatch === true)
+                if (self::$_routeMatch === true)
                 {
 	                self::$is_404 = false;
 	                $this->setRole($route);
@@ -93,23 +93,30 @@
 
         private function checkPlainRoute($url)
         {
-            $this->_routeMatch = false;
+	        self::$_routeMatch = false;
             if ($url == url::getUrl())
             {
-                $this->_routeMatch = true;
+	            self::$_routeMatch = true;
             }
         }
 
         private function checkRegexRoute($url)
         {
-            $this->_routeMatch = false;
+	        self::$_routeMatch = false;
 
             if (preg_match('#' . $url . '#', url::getUrl(), $matches))
             {
 	            self::$_matches = $matches;
-                $this->_routeMatch = true;
+	            self::$_routeMatch = true;
             }
         }
+
+	    public static function setRoute($route)
+	    {
+		    if(array_key_exists('page', self::$_routes[$route])){
+			    return self::$_page = self::$_routes[$route]['page'];
+		    }
+	    }
 
         public static function getRoute()
         {

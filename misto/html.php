@@ -11,6 +11,13 @@
         public static $description;
         public static $class;
         public static $id;
+	    public static $date;
+	    public static $slug;
+	    public static $category;
+	    public static $tags;
+	    public static $externalCSS;
+	    public static $externalJS;
+	    public static $comments = false;
 
         public static function load_meta()
         {

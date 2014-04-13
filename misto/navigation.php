@@ -36,7 +36,8 @@
             $defaults = array(
                 'id' => '',
                 'class' => 'nav',
-                'output' => 'ul');
+                'output' => 'ul',
+                'wrap' => 'li');
             $nav = '';
 
             $options = tools::params($defaults, $params);
@@ -55,13 +56,7 @@
 
             foreach ($navigation as $value)
             {
-                if ((!isset($_SESSION['auth']) || $_SESSION['auth'] == false) && empty($value['auth']))
-                {
-                    $nav .= self::nav_element($value);
-                } else
-                {
-                    $nav .= self::nav_element($value);
-                }
+                $nav .= self::nav_element($value, $options['wrap']);
             }
 
             if ($options['output'] == 'ul')
@@ -73,9 +68,9 @@
             echo $nav;
         }
 
-        private static function nav_element($el)
+        private static function nav_element($el, $wrap = 'li')
         {
-            $current = '';
+            $element = '';
             $name = $el['name'];
             $title = '';
             $url = $el['url'];
@@ -141,8 +136,13 @@
                     $link = $url;
                 }
             }
-            $element = '
-                <li' . $class . '>
+
+	        if($wrap != '' && in_array($wrap, array('li', 'span', 'div'))){
+		        $element .= '
+		            <' . $wrap . $class . '>';
+	        }
+
+            $element .= '
                     <a href="' . $link . '"' . $rel . $id . $linkclass . $title . $target . '>' . $wrapped . '</a>';
 
             if (!empty($el['children']))
@@ -157,8 +157,10 @@
                     </ul>';
             }
 
-            $element .= '
-                </li>';
+	        if($wrap != '' && in_array($wrap, array('li', 'span', 'div'))){
+		        $element .= '
+		            </' . $wrap . '>';
+	        }
 
             return $element;
         }
