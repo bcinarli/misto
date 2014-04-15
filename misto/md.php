@@ -119,7 +119,13 @@ class md
 	{
 		if (count(self::$_meta) > 0) {
 			foreach (self::$_meta as $key => $value) {
-				html::$$key = $value;
+				// add all meta to html's meta property
+				html::$meta[$key] = $value;
+
+				// if also named property exist, set the value
+				if(property_exists('html', $key)){
+					html::$$key = $value;
+				}
 			}
 		}
 	}

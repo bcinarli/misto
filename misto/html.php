@@ -11,6 +11,7 @@
         public static $description;
         public static $class;
         public static $id;
+	    public static $meta = array();
 	    public static $date;
 	    public static $slug;
 	    public static $category;
