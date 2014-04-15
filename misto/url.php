@@ -197,4 +197,14 @@
 	    public static function make_url($path){
 		    return self::homepage() . '/' . tools::slug($path, false);
 	    }
+
+	    public static function make_abs_url($path){
+		    $http = 'http';
+		    if (self::$_isSSL == true)
+		    {
+			    $http .= 's';
+		    }
+
+		    return $http . '://' . url::getHost() . url::make_url($path);
+	    }
     }
