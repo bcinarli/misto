@@ -129,12 +129,7 @@
                 $link = '#';
             } else
             {
-                $link = 'http://' . url::$plainhost . url::$path . $url;
-
-                if (substr($url, 0, 7) == 'http://')
-                {
-                    $link = $url;
-                }
+                $link = str_replace('//', '/', url::make_url($url));
             }
 
 	        if($wrap != '' && in_array($wrap, array('li', 'span', 'div'))){
