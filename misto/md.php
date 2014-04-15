@@ -143,11 +143,16 @@ class md
 		self::$html = MarkdownExtra::defaultTransform(self::$_content);
 	}
 
+	public static function getContent()
+	{
+		return self::$html;
+	}
+
 	/**
 	 * Prints the transformed html
 	 */
 	public static function printContent()
 	{
-		echo self::$html;
+		echo self::getContent();
 	}
 } 
