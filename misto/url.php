@@ -111,6 +111,11 @@
             return self::$_url;
         }
 
+	    public static function getPath()
+	    {
+			return self::$path;
+	    }
+
         public static function getHost()
         {
             if (self::$_isLocal == true)

@@ -1,5 +1,9 @@
 Change Log
 ===============================
+# Version 0.8.1
+### Bugfixes
+- missing url::getPath() method fixed for getting the misto app path in the server
+
 # Version 0.8
 ### Improvements
 - Feed class added for rss feed creation. Currently only support for atom formatted xml rss feeds
