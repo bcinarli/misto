@@ -1,11 +1,12 @@
 <?php
+
 /**
  * @author Bilal Cinarli
  *
  * Feed class for RSS
  */
-
-class feed {
+class feed
+{
 	public static $feed_source;
 	public static $feed_limit = 10;
 	public static $fulltext = false;
@@ -20,11 +21,11 @@ class feed {
 
 	/**
 	 * Constructor method, defines the feed source
-	 * @param $source, array of the source
+	 * @param $source , array of the source
 	 */
 	public function __construct($source = null)
 	{
-		if($source != null){
+		if ($source != null) {
 			self::$feed_source = $source;
 		}
 
@@ -39,7 +40,7 @@ class feed {
 		$this->_feed_header = '
 			<title>' . self::$title . '</title>
 			<link href="' . self::$link . '" />
-			<updated>' . self::$feed_source[0]['date'] . '</updated>
+			<updated>' . tools::formatDate(self::$feed_source[0]['date'], 'Y-m-d\TH:i:mP') . '</updated>
 			<author>
 				<name>' . self::$author . '</name>
 				<email>' . self::$author_email . '</email>
@@ -50,21 +51,20 @@ class feed {
 
 	private function create_feeds()
 	{
-		if(!is_array(self::$feed_source))
-		{
+		if (!is_array(self::$feed_source)) {
 			return;
 		}
 
 		$start = 1;
-		foreach(self::$feed_source as $feed){
-			if($start > self::$feed_limit) {
+		foreach (self::$feed_source as $feed) {
+			if ($start > self::$feed_limit) {
 				break;
 			}
 
 			$summary = $feed['excerpt'];
 
-			if(self::$fulltext == true){
-				$md = new md('_articles/' . $feed['date'] . '-' . $feed['slug'] . '.md');
+			if (self::$fulltext == true) {
+				$md      = new md('_articles/' . tools::formatDate($feed['date'], 'Y-m-d') . '-' . $feed['slug'] . '.md');
 				$summary = $md::getContent();
 
 				// make abs paths
@@ -75,11 +75,11 @@ class feed {
 			$this->_feed_text .= '
 				<entry>
 					<title>' . $feed['title'] . '</title>
-					<updated>' . $feed['date'] . '</updated>
+					<updated>' . tools::formatDate($feed['date'], 'Y-m-d\TH:i:mP') . '</updated>
 					<summary type="html">
 					<![CDATA[<p>' . $summary . '</p>]]>
 					</summary>
-					<link href="' . url::make_abs_url('article/' . $feed['slug']) .'" />
+					<link href="' . url::make_abs_url('article/' . $feed['slug']) . '" />
 				</entry>';
 
 			$start++;
