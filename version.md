@@ -1,5 +1,13 @@
 Change Log
 ===============================
+# Version 0.8.2
+### Improvements
+- Array values now supporting in meta values in article. Tag list, related articles etc storing in an array list in html::$meta variable.
+
+### Changes
+- Date time output for RSS feeds revised in order to get more proper publish date time
+- Code beautifier applied to Misto classes
+
 # Version 0.8.1
 ### Bugfixes
 - missing url::getPath() method fixed for getting the misto app path in the server
