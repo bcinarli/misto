@@ -111,13 +111,13 @@ class md
 			if (empty($meta)) continue;
 
 			// for list of values, they start with dash
-			if (substr(trim($meta), 0, 1) == '-') {
+			if (in_array(substr(trim($meta), 0, 1), array('-', '*'))) {
 				$tmp_val[] = trim(substr($meta, 1));
 
 				self::$_meta[$key] = $tmp_val;
 			} // key : value pair
 			else {
-				$mt      = explode(':', $meta);
+				$mt      = explode(':', $meta, 2);
 				$new_key = trim($mt[0]);
 
 				if (!empty($mt[1])) {
