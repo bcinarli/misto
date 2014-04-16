@@ -52,24 +52,20 @@ class md
 		// check if file exists
 		if (!file_exists($file_path)) {
 			// article names starts with their dates
-			if(strstr($file_path, '_articles')){
+			if (strstr($file_path, '_articles')) {
 				$file_path = str_replace('_articles/', '_articles/*', $file_path);
-				$article = glob($file_path);
+				$article   = glob($file_path);
 
-				if(!$article){
+				if (!$article) {
 					router::setRoute('404');
 
 					header("HTTP/1.0 404 Not Found");
 					tools::inc(router::getRoute(), '', 'require_once');
 					exit;
-				}
-
-				else  {
+				} else {
 					$file_path = $article[0];
 				}
-			}
-
-			else {
+			} else {
 				router::setRoute('404');
 
 				header("HTTP/1.0 404 Not Found");
@@ -104,16 +100,44 @@ class md
 		self::$_content = implode('---', $tmp);
 
 		// set the metas
+
+		$key     = '';
+		$value   = '';
+		$tmp_val = array();
+
 		foreach ($tmp_meta as $meta) {
-			if ($meta != '') {
-				$mt                        = explode(':', $meta);
-				self::$_meta[trim($mt[0])] = trim($mt[1]);
+			$meta = trim($meta);
+
+			if (empty($meta)) continue;
+
+			// for list of values, they start with dash
+			if (substr(trim($meta), 0, 1) == '-') {
+				$tmp_val[] = trim(substr($meta, 1));
+
+				self::$_meta[$key] = $tmp_val;
+			} // key : value pair
+			else {
+				$mt      = explode(':', $meta);
+				$new_key = trim($mt[0]);
+
+				if (!empty($mt[1])) {
+					$value = trim($mt[1]);
+				}
+
+				self::$_meta[$new_key] = $value;
+			}
+
+			// sets the new key and empty the value array
+			if ($key != $new_key) {
+				$key     = $new_key;
+				$tmp_val = array();
 			}
 		}
 	}
 
 	/**
 	 * Sets the meta data of the page if any
+	 * @todo Seperate setMetadata and getMetadata functions and use them from article object.
 	 */
 	private function setMetadata()
 	{
@@ -123,7 +147,7 @@ class md
 				html::$meta[$key] = $value;
 
 				// if also named property exist, set the value
-				if(property_exists('html', $key)){
+				if (property_exists('html', $key)) {
 					html::$$key = $value;
 				}
 			}
