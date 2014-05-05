@@ -101,6 +101,7 @@ class navigation
 		}
 		if (in_array($name, self::$_selecteds)) {
 			$css .= 'current';
+			$linkcss .= ' current';
 		}
 		if ($css != '') {
 			$class = ' class="' . $css . '"';
