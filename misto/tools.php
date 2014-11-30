@@ -20,7 +20,7 @@ class tools
 			$include .= '.php';
 		}
 
-		$path = ABS_PATH . 'app/' . $dir . '/' . $include;
+		$path = ABS_PATH . APP_PATH . $dir . '/' . $include;
 
 		switch ($type) {
 			default:

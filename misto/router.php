@@ -15,7 +15,7 @@ class router
 
 	public function __construct()
 	{
-		require_once(ABS_PATH . 'app/settings/routes.php');
+		require_once(ABS_PATH . APP_PATH . 'settings/routes.php');
 
 		self::$_page = $routes['404']['page'];
 		$this->setRoutes($routes);
