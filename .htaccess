@@ -15,17 +15,27 @@ RewriteRule . index.php [L]
     </IfModule>
   </IfModule>
 
+  <IfModule mod_mime.c>
+      AddType application/vnd.ms-fontobject   eot
+      AddType application/x-font-ttf          ttf ttc
+      AddType font/opentype                   otf
+      AddType application/x-font-woff         woff
+      AddType image/svg+xml                   svg svgz
+  </IfModule>
+
   # Compress all output labeled with one of the following MIME-types
   # (for Apache versions below 2.3.7, you don't need to enable `mod_filter`
   # and can remove the `<IfModule mod_filter.c>` and `</IfModule>` lines as
   # `AddOutputFilterByType` is still in the core directives)
-  <IfModule mod_filter.c>
+  #<IfModule mod_filter.c>
     AddOutputFilterByType DEFLATE application/atom+xml \
                                   application/javascript \
+                                  application/x-javascript \
                                   application/json \
                                   application/rss+xml \
                                   application/vnd.ms-fontobject \
                                   application/x-font-ttf \
+                                  application/x-font-woff \
                                   application/xhtml+xml \
                                   application/xml \
                                   font/opentype \
@@ -33,8 +43,9 @@ RewriteRule . index.php [L]
                                   image/x-icon \
                                   text/css \
                                   text/html \
+                                  text/javascript \
                                   text/plain \
                                   text/x-component \
                                   text/xml
-  </IfModule>
+  #</IfModule>
 </IfModule>
