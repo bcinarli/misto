@@ -85,6 +85,12 @@ class tools
 		return date_format($d, $format);
 	}
 
+    public static function formatLocaleDate($date, $format = '%e %B %G'){
+        $d = new DateTime($date);
+
+        return strftime($format, date_timestamp_get($d));
+    }
+
 	public static function is_serial($data)
 	{
 		$serial = false;
