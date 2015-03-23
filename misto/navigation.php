@@ -110,8 +110,8 @@ class navigation
 			$linkclass = ' class="' . $linkcss . '"';
 		}
 
-		if ($url == '#') {
-			$link = '#';
+		if (strstr($url, '#')) {
+			$link = $url;
 		} else {
 			$link = str_replace('//', '/', url::make_url($url));
 		}
