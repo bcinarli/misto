@@ -50,7 +50,7 @@ class md extends MarkdownExtra
 	 */
 	private function is_exists()
 	{
-		$file_path = ABS_PATH . APP_PATH . self::$doc_root . '/' . self::$_file;
+		$file_path = ABS_PATH . POSTS_PATH . self::$doc_root . '/' . self::$_file;
 
 		// check if file exists
 		if (!file_exists($file_path)) {

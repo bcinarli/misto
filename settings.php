@@ -5,6 +5,7 @@
  **/
 
 	define('APP_PATH', 'app/');
+	define('POST_PATH', '_posts/');
     define('SITE_TITLE', "Misto");
 
     define('Authentication', false);
