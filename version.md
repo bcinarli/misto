@@ -1,5 +1,19 @@
 Change Log
 ===============================
+# Version 0.9.0
+### Improvements
+- Local date format added while using time conversion for blog posts
+- APP_PATH constant added 
+- Mobile_Detect class updated and moved to `vendors` folder
+- GZIP definitions in `.htaccess` file improved
+
+### Changes
+- `.md` content moved to \_posts folder for keeping clean and template only files in app folder.
+
+### Bugfixes
+- `#` removed from slug method in order to define anchor links
+- Broken links when url defined as an anchor link
+
 # Version 0.8.2
 ### Improvements
 - Array values now supporting in meta values in article. Tag list, related articles etc storing in an array list in html::$meta variable.
