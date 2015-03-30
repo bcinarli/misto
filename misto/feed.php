@@ -64,17 +64,18 @@ class feed
 			$summary = $feed['excerpt'];
 
 			if (self::$fulltext == true) {
-				$md      = new md('_articles/' . tools::formatDate($feed['date'], 'Y-m-d') . '-' . $feed['slug'] . '.md');
+				$md      = new md($feed['slug']);
 				$summary = $md::getContent();
 
 				// make abs paths
 				$summary = str_replace('href="/', 'href="http://' . url::getHost() . '/', $summary);
 				$summary = str_replace('src="/', 'src="http://' . url::getHost() . '/', $summary);
+				$summary = str_replace('src="../', 'src="http://' . url::getHost() . '/', $summary);
 			}
 
 			$this->_feed_text .= '
 				<entry>
-					<title>' . $feed['title'] . '</title>
+					<title><![CDATA[' . $feed['title'] . ']]></title>
 					<updated>' . tools::formatDate($feed['date'], 'Y-m-d\TH:i:mP') . '</updated>
 					<summary type="html">
 					<![CDATA[<p>' . $summary . '</p>]]>
