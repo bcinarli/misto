@@ -69,7 +69,7 @@ class router
 			}
 
 			// if url matched, and page if is not exists, set page to 404
-			if (!file_exists(ABS_PATH . 'app' . $page)) {
+			if (!file_exists(APP_PATH . $page)) {
 				$page         = $this->_routes[404]['page'];
 				self::$is_404 = true;
 			}
