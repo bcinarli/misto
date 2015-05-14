@@ -38,7 +38,7 @@ class html
 			$meta .= "\t" . '<meta name="description" content="' . self::$description . '" />' . "\n";
 		}
 
-		if (router::$is_404 === true) {
+		if (role::is_404()) {
 			$meta .= "\n\t" . '<meta name="robots" content="nofollow, noindex" />' . "\n";
 			$meta .= "\t" . '<meta name="robots" content="noarchive" />' . "\n";
 			$meta .= "\t" . '<meta name="googlebot" content="noarchive" />' . "\n";
