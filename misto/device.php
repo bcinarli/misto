@@ -7,27 +7,32 @@
 
 use \Mobile_Detect\Mobile_Detect;
 
-class device
+class device extends Mobile_Detect
 {
     private static $_device;
+    private static $_isMobile;
+    private static $_isTablet;
 
     public function __construct()
     {
-        self::$_device = new Mobile_Detect;
-    }
-
-    public static function is($key)
-    {
-        self::$_device->is($key);
+        parent::__construct();
+        
+        self::$_isMobile = parent::isMobile();
+        self::$_isTablet = parent::isTablet();
     }
 
     public static function isMobile()
     {
-        self::$_device->isMobile();
+        return self::$_isMobile;
     }
 
     public static function isTablet()
     {
-        self::$_device->isTablet();
+        return self::$_isTablet;
+    }
+    
+    public static function is_Phone()
+    {
+        return self::$_isMobile && !self::$_isTablet;
     }
 }
