@@ -21,12 +21,12 @@ class device extends Mobile_Detect
         self::$_isTablet = parent::isTablet();
     }
 
-    public static function isMobile()
+    public static function is_Mobile()
     {
         return self::$_isMobile;
     }
 
-    public static function isTablet()
+    public static function is_Tablet()
     {
         return self::$_isTablet;
     }

@@ -24,7 +24,7 @@ class html
 
 	public static function load_meta()
 	{
-		if (device::isMobile() || role::is_homepage() || role::is_404()) {
+		if (device::is_Mobile() || role::is_homepage() || role::is_404()) {
 			$meta = '<title>' . SITE_TITLE . '</title>' . "\n";
 		} else {
 			$meta = '<title>' . self::$title . ' | ' . SITE_TITLE . '</title>' . "\n";
